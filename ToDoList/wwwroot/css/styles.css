@@ -1,3 +1,11 @@
+body {
+	background-color: rgb(218, 220, 220);
+	text-align: center;
+}
+ul.li {
+  list-style-type: circle;
+}
+
 div#footer {
 	position:fixed;
 	bottom:0px;
