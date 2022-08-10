@@ -29,10 +29,23 @@ namespace ToDoList
         services.AddEntityFrameworkMySql()
             .AddDbContext<ToDoListContext>(options => options
             .UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
+      
+      
         //new code
       services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ToDoListContext>()
                 .AddDefaultTokenProviders();
+
+        // This is new:   
+      services.Configure<IdentityOptions>(options =>
+      {
+          options.Password.RequireDigit = false;
+          options.Password.RequiredLength = 0;
+          options.Password.RequireLowercase = false;
+          options.Password.RequireNonAlphanumeric = false;
+          options.Password.RequireUppercase = false;
+          options.Password.RequiredUniqueChars = 0;
+      });
     }
 
     public void Configure(IApplicationBuilder app)
